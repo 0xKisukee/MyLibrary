@@ -6,7 +6,7 @@ const bookRoutes = require('./routes/book.route');
 // Import tables creation
 const sequelize = require('./database');
 // Import error middleware
-const errorHandler = require("./middlewares/errorHandler");
+const { errorHandler } = require("./middlewares/errorHandler");
 
 const app = express();
 const PORT = process.env.PORT;
