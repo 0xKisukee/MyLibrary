@@ -5,6 +5,8 @@ const userRoutes = require('./routes/user.route');
 const bookRoutes = require('./routes/book.route');
 // Import tables creation
 const sequelize = require('./database');
+// Import error middleware
+const errorHandler = require("./middlewares/errorHandler");
 
 const app = express();
 const PORT = process.env.PORT;
@@ -20,6 +22,9 @@ app.use('/api/book', bookRoutes);
 app.get('/', (req, res) => {
     res.send('Welcome on MyLibrary!');
 });
+
+// Use error middleware
+app.use(errorHandler);
 
 // Start server
 app.listen(PORT, () => {
