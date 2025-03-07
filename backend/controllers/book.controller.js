@@ -1,4 +1,4 @@
-// const bookService = require('../services/book.service.js');
+const bookService = require('../services/book.service.js');
 
 async function createBook(req, res, next) {
     try {
