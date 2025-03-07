@@ -1,8 +1,10 @@
 const express = require('express');
 require('dotenv').config();
-
 // Import routes
 const userRoutes = require('./routes/user.route');
+const bookRoutes = require('./routes/book.route');
+// Import tables creation
+const sequelize = require('./database');
 
 const app = express();
 const PORT = process.env.PORT;
@@ -12,6 +14,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/user', userRoutes);
+app.use('/api/book', bookRoutes);
 
 // Base route
 app.get('/', (req, res) => {
@@ -20,5 +23,12 @@ app.get('/', (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`Server live on http://localhost:${PORT}`);
+    console.log(`Server live on http://localhost:${PORT}.`);
 });
+
+// Create tables in database
+(async () => {
+    require("./models");
+    await sequelize.sync({ force: true/*, logging: console.log*/ });
+    console.log('Tables successfully created.');
+})();
