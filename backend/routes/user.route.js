@@ -4,5 +4,6 @@ const userController = require('../controllers/user.controller');
 
 // Base routes
 router.post('/', userController.createUser);
+router.post('/:userID/addBookToShelf/:bookID', userController.addBookToShelf);
 
 module.exports = router;
