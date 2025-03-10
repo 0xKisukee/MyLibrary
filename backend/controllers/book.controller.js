@@ -3,8 +3,8 @@ const bookService = require('../services/book.service.js');
 async function createBook(req, res, next) {
     try {
         const data = req.body;
-        await bookService.createBook(data);
-        res.json(data);
+        const createdBook = await bookService.createBook(data);
+        res.json(createdBook);
     } catch (err) {
         next(err);
     }
