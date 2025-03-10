@@ -8,9 +8,9 @@ class AppError extends Error {
 }
 
 const errorHandler = (err, req, res, next) => {
-    res.status(999).json({
-        status: err.status,
-        message: "An error was caught by the error middleware: " + err.message
+    res.status(err.statusCode).json({
+        status: "ERROR 💥 " + err.statusCode,
+        message: "Rrror caught by the middleware: " + err.message
     });
 };
 
