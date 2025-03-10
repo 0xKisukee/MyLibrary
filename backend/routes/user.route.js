@@ -23,5 +23,11 @@ router.get(
 );
 
 // Admin routes
+router.patch(
+    '/:userID/role',
+    auth.authenticateJwt,
+    auth.isAdmin,
+    userController.setUserRole
+);
 
 module.exports = router;

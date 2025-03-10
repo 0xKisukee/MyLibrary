@@ -55,6 +55,22 @@ async function login(data) {
     return token;
 }
 
+async function updateUserRole(userID, role) {
+    // Check if user exists
+    const user = await User.findByPk(userID);
+    if (!user) {
+        throw new AppError('User does not exist', 400);
+    }
+    
+    // Update role
+    user.role = role;
+    await user.save();
+    
+    // Retourner l'utilisateur sans le mot de passe
+    const { password, ...userWithoutPassword } = user.toJSON();
+    return userWithoutPassword;
+}
+
 async function addBookToShelf(userID, bookID) {
     // Check if user exists
     const user = await User.findByPk(userID);
@@ -99,4 +115,5 @@ module.exports = {
     addBookToShelf,
     getUserShelf,
     login,
+    updateUserRole,
 };

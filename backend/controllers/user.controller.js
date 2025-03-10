@@ -28,6 +28,23 @@ async function createUser(req, res, next) {
     }
 }
 
+async function setUserRole(req, res, next) {
+    try {
+        const { userID } = req.params;
+        const { role } = req.body;
+        
+        // Verify role
+        if (role !== 'admin' && role !== 'user') {
+            throw new AppError('Invalid role. Must be "admin" or "user"', 400);
+        }
+        
+        const updatedUser = await userService.updateUserRole(userID, role);
+        res.json(updatedUser);
+    } catch (err) {
+        next(err);
+    }
+}
+
 async function addBookToShelf(req, res, next) {
     try {
         const { userID, bookID } = req.params;
@@ -54,4 +71,5 @@ module.exports = {
     addBookToShelf,
     getUserShelf,
     login,
+    setUserRole,
 };
