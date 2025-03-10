@@ -1,9 +1,16 @@
 const userService = require('../services/user.service.js');
 const bookService = require('../services/book.service.js');
+const bcrypt = require('bcrypt');
 
 async function createUser(req, res, next) {
     try {
         const data = req.body;
+
+        // Hash password
+        const hashedPassword = await bcrypt.hash(data.password, 10);
+        data.password = hashedPassword;
+
+        // Create user
         const userWithoutPwd = await userService.createUser(data);
 
         res.json(userWithoutPwd);

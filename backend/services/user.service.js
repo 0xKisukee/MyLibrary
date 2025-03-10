@@ -1,5 +1,4 @@
 const { User, Book } = require("../models");
-const bcrypt = require('bcrypt');
 const { AppError } = require('../middlewares/errorHandler');
 
 async function createUser(data) {
@@ -11,10 +10,6 @@ async function createUser(data) {
     if (existingUser) {
         throw new AppError('Email already used', 400);
     }
-
-    // Hash password
-    const hashedPassword = await bcrypt.hash(data.password, 10);
-    data.password = hashedPassword;
 
     // Create user
     const newUser = await User.create(data);
