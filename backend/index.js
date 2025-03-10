@@ -31,9 +31,21 @@ app.listen(PORT, () => {
     console.log(`Server live on http://localhost:${PORT}.`);
 });
 
-// Create tables in database
+// Create tables in database and admin user
 (async () => {
-    require("./models");
+    const { User } = require("./models");
+    const bcrypt = require('bcrypt');
+
     await sequelize.sync({ force: true/*, logging: console.log*/ });
     console.log('Tables successfully created.');
+
+    const hashedPassword = await bcrypt.hash(process.env.ADMIN_PWD, 10);
+    await User.create(
+        {
+            "username": process.env.ADMIN_USERNAME,
+            "email": process.env.ADMIN_EMAIL,
+            "password": hashedPassword,
+            "role": "admin"
+        }
+    );
 })();
