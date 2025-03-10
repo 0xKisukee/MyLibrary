@@ -40,7 +40,24 @@ async function addBookToShelf(userID, bookID) {
     await user.addBook(book);
 
     // Get books in user's shelf (using getBooks native method)
-    const books = await user.getBooks();
+    const books = await user.getBooks({
+        joinTableAttributes: []
+    });
+
+    return books;
+}
+
+async function getUserShelf(userID) {
+    // Check if user exists
+    const user = await User.findByPk(userID);
+    if (!user) {
+        throw new AppError('User does not exist', 400);
+    }
+
+    // Get books in user's shelf (using getBooks native method)
+    const books = await user.getBooks({
+        joinTableAttributes: []
+    });
 
     return books;
 }
@@ -48,4 +65,5 @@ async function addBookToShelf(userID, bookID) {
 module.exports = {
     createUser,
     addBookToShelf,
+    getUserShelf,
 };
