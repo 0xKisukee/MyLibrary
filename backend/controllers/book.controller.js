@@ -4,7 +4,16 @@ async function createBook(req, res, next) {
     try {
         const data = req.body;
         await bookService.createBook(data);
-        res.send('Created a book!');
+        res.json(data);
+    } catch (err) {
+        next(err);
+    }
+}
+
+async function getAllBooks(req, res, next) {
+    try {
+        const books = await bookService.getAllBooks();
+        res.json(books);
     } catch (err) {
         next(err);
     }
@@ -12,4 +21,5 @@ async function createBook(req, res, next) {
 
 module.exports = {
     createBook,
+    getAllBooks,
 };

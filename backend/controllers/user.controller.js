@@ -4,7 +4,7 @@ async function createUser(req, res, next) {
     try {
         const data = req.body;
         await userService.createUser(data);
-        res.send('Created a user!');
+        res.json(data);
     } catch (err) {
         next(err);
     }

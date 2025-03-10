@@ -7,6 +7,12 @@ async function createBook(data) {
     return newBook;
 }
 
+async function getAllBooks() {
+    const books = await Book.findAll();
+    return books;
+}
+
 module.exports = {
     createBook,
+    getAllBooks,
 };
