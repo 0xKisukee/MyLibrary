@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Étagère - Bibliothèque en ligne</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Ma Bibliothèque en Ligne</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="dashboard.html" class="active">Mon Étagère</a></li>
+                <li><a href="admin.html" id="admin-link" style="display: none;">Administration</a></li>
+                <li><a href="#" id="logout-link">Déconnexion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="user-info">
+            <h2>Bienvenue, <span id="username-display">Utilisateur</span></h2>
+        </section>
+
+        <section id="user-shelf">
+            <h2>Mon Étagère</h2>
+            <div id="shelf-container">
+                <!-- Les livres de l'utilisateur seront ajoutés ici dynamiquement -->
+                <p>Chargement de votre étagère...</p>
+            </div>
+        </section>
+
+        <section id="available-books">
+            <h2>Livres disponibles</h2>
+            <div id="books-container">
+                <!-- Les livres disponibles seront ajoutés ici dynamiquement -->
+                <p>Chargement des livres...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Ma Bibliothèque en Ligne</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/books.js"></script>
+    <script src="js/user.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Vérifier si l'utilisateur est connecté
+            const user = checkAuthStatus(true);
+            
+            if (user) {
+                document.getElementById('username-display').textContent = user.username;
+                // Charger l'étagère de l'utilisateur
+                loadUserShelf(user.id);
+                // Charger tous les livres disponibles
+                loadAllBooks();
+            } else {
+                // Rediriger vers la page de connexion si non connecté
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>

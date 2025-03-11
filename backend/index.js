@@ -14,6 +14,9 @@ const PORT = process.env.PORT;
 // Middleware for JSON requests
 app.use(express.json());
 
+//Serve static files of frontend
+app.use(express.static('../frontend'));
+
 // Routes
 app.use('/api/user', userRoutes);
 app.use('/api/book', bookRoutes);

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibliothèque en ligne</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Ma Bibliothèque en Ligne</h1>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="login.html" id="login-link">Connexion</a></li>
+                <li><a href="register.html" id="register-link">Inscription</a></li>
+                <li><a href="dashboard.html" id="dashboard-link" style="display: none;">Mon Étagère</a></li>
+                <li><a href="admin.html" id="admin-link" style="display: none;">Administration</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="welcome-section">
+            <h2>Bienvenue dans votre bibliothèque personnelle</h2>
+            <p>Découvrez, organisez et gérez vos livres préférés.</p>
+        </section>
+
+        <section id="books-section">
+            <h2>Livres disponibles</h2>
+            <div id="books-container">
+                <!-- Les livres seront ajoutés ici dynamiquement -->
+                <p>Chargement des livres...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Ma Bibliothèque en Ligne</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/books.js"></script>
+    <script>
+        // Vérifier si l'utilisateur est connecté au chargement de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthStatus();
+            loadAllBooks();
+        });
+    </script>
+</body>
+</html>

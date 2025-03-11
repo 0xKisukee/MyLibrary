@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - Bibliothèque en ligne</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Ma Bibliothèque en Ligne - Administration</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="dashboard.html">Mon Étagère</a></li>
+                <li><a href="admin.html" class="active">Administration</a></li>
+                <li><a href="#" id="logout-link">Déconnexion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="admin-info">
+            <h2>Panneau d'administration</h2>
+            <p>Bienvenue dans le panneau d'administration.</p>
+        </section>
+
+        <section id="add-book-section">
+            <h2>Ajouter un nouveau livre</h2>
+            <form id="add-book-form">
+                <div class="form-group">
+                    <label for="title">Titre:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="author">Auteur:</label>
+                    <input type="text" id="author" name="author" required>
+                </div>
+                <div class="form-group">
+                    <label for="genre">Genre:</label>
+                    <input type="text" id="genre" name="genre" required>
+                </div>
+                <div class="form-group">
+                    <label for="publication-year">Année de publication:</label>
+                    <input type="number" id="publication-year" name="publicationYear" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Ajouter le livre</button>
+                </div>
+                <div id="add-book-message"></div>
+            </form>
+        </section>
+
+        <section id="manage-users-section">
+            <h2>Gestion des utilisateurs</h2>
+            <div id="users-container">
+                <!-- Les utilisateurs seront ajoutés ici dynamiquement -->
+                <p>Chargement des utilisateurs...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Ma Bibliothèque en Ligne</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/books.js"></script>
+    <script src="js/user.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Vérifier si l'utilisateur est connecté et est admin
+            const user = checkAuthStatus(true);
+            
+            if (user && user.role === 'admin') {
+                // Initialiser le formulaire d'ajout de livre
+                initAddBookForm();
+                // Charger la liste des utilisateurs (fonctionnalité à ajouter)
+                // loadUsers();
+            } else {
+                // Rediriger vers la page d'accueil si non admin
+                window.location.href = 'index.html';
+                alert('Accès refusé. Vous devez être administrateur pour accéder à cette page.');
+            }
+        });
+    </script>
+</body>
+</html>

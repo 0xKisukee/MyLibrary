@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - Bibliothèque en ligne</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Ma Bibliothèque en Ligne</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="login.html">Connexion</a></li>
+                <li><a href="register.html" class="active">Inscription</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="register-section">
+            <h2>Créer un compte</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe:</label>
+                    <input type="password" id="password" name="password" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirmer le mot de passe:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <button type="submit">S'inscrire</button>
+                </div>
+                <div id="register-message"></div>
+            </form>
+            <p>Déjà inscrit ? <a href="login.html">Connectez-vous ici</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Ma Bibliothèque en Ligne</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialiser le formulaire d'inscription
+            initRegisterForm();
+        });
+    </script>
+</body>
+</html>
