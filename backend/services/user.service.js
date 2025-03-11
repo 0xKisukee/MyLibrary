@@ -52,7 +52,14 @@ async function login(data) {
         { expiresIn: '5m' }
     );
 
-    return token;
+    return {
+        token,
+        user: {
+            userId: user.id,
+            email: user.email,
+            role: user.role
+        }
+    };
 }
 
 async function updateUserRole(userID, role) {

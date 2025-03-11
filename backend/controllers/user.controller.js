@@ -4,10 +4,13 @@ const bcrypt = require('bcrypt');
 
 async function login(req, res, next) {
     try {
-        const token = await userService.login(req.body);
+        const result  = await userService.login(req.body);
+
+        // Destructure the result to get token and user
+        const { token, user } = result;
 
         // Renvoyer le token au client
-        res.json({ token });
+        res.json({ token, user });
     } catch (err) {
         next(err);
     }
