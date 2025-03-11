@@ -6,13 +6,9 @@ async function loadAllBooks() {
     
     if (!booksContainer) return;
     
-    try {
-        // Récupérer le token s'il existe
-        const token = localStorage.getItem('token');
-        const requiresAuth = !!token;
-        
+    try {        
         // Récupérer tous les livres
-        const books = await apiRequest('/book/all', 'GET', null, requiresAuth);
+        const books = await apiRequest('/book/all', 'GET', null, true);
         
         // Vérifier si des livres ont été trouvés
         if (!books || books.length === 0) {
@@ -79,7 +75,7 @@ function createBookCard(book, user = null) {
         const addButton = document.createElement('button');
         addButton.className = 'add-to-shelf-btn';
         addButton.textContent = 'Ajouter à mon étagère';
-        addButton.addEventListener('click', () => addBookToShelf(book._id || book.id, user.id));
+        addButton.addEventListener('click', () => addBookToShelf(book._id || book.id, user.userId));
         
         bookCard.appendChild(addButton);
     }
@@ -133,9 +129,7 @@ function initAddBookForm() {
             await apiRequest('/book/create', 'POST', {
                 title,
                 author,
-                genre,
-                publicationYear: parseInt(publicationYear),
-                description
+                year: parseInt(publicationYear),
             }, true);
             
             // Afficher le message de succès

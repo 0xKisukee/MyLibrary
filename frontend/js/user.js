@@ -12,7 +12,7 @@ async function loadUserShelf(userId) {
         const response = await apiRequest(`/user/${userId}/shelf`, 'GET', null, true);
         
         // Vérifier si des livres ont été trouvés
-        if (!response.books || response.books.length === 0) {
+        if (!response || response.length === 0) {
             shelfContainer.innerHTML = '<p>Votre étagère est vide. Ajoutez des livres depuis la liste des livres disponibles.</p>';
             return;
         }
@@ -21,7 +21,7 @@ async function loadUserShelf(userId) {
         shelfContainer.innerHTML = '';
         
         // Afficher chaque livre
-        response.books.forEach(book => {
+        response.forEach(book => {
             const bookCard = createShelfBookCard(book, userId);
             shelfContainer.appendChild(bookCard);
         });

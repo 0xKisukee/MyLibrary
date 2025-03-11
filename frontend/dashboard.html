@@ -57,7 +57,7 @@
             if (user) {
                 document.getElementById('username-display').textContent = user.username;
                 // Charger l'étagère de l'utilisateur
-                loadUserShelf(user.id);
+                loadUserShelf(user.userId);
                 // Charger tous les livres disponibles
                 loadAllBooks();
             } else {
