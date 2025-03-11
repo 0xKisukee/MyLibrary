@@ -14,6 +14,7 @@ router.post(
 router.get(
     '/all',
     auth.authenticateJwt,
+    auth.handleJwtErrors,
     bookController.getAllBooks
 );
 

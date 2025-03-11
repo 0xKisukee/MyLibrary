@@ -8,6 +8,15 @@ const authenticateJwt = expressJwt({
     algorithms: ['HS256']
 });
 
+// Middleware: Capture JWT errors
+const handleJwtErrors = (err, req, res, next) => {
+    if (err.name === 'UnauthorizedError') {
+        // express-jwt errors are of type UnauthorizedError
+        throw new AppError('Authentication error caught on expressJwt', 401);
+    }
+    next(err);
+};
+
 // Middleware: Admin verification
 const isAdmin = (req, res, next) => {
     // req.auth is given bt express-jwt and contains decrypted token data
@@ -33,6 +42,7 @@ const isOwnResource = (req, res, next) => {
 
 module.exports = {
     authenticateJwt,
+    handleJwtErrors,
     isAdmin,
     isOwnResource,
 }
