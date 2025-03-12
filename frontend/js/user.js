@@ -58,7 +58,7 @@ function createShelfBookCard(book, userId) {
     meta.className = 'book-meta';
     meta.innerHTML = `
         <span>Genre: ${book.genre || 'Non spécifié'}</span>
-        <span>Année: ${book.publicationYear || 'Non spécifiée'}</span>
+        <span>Année: ${book.year || 'Non spécifiée'}</span>
     `;
     
     // Ajouter les éléments au card

@@ -61,7 +61,7 @@ function createBookCard(book, user = null) {
     meta.className = 'book-meta';
     meta.innerHTML = `
         <span>Genre: ${book.genre || 'Non spécifié'}</span>
-        <span>Année: ${book.publicationYear || 'Non spécifiée'}</span>
+        <span>Année: ${book.year || 'Non spécifiée'}</span>
     `;
     
     // Ajouter les éléments au card
@@ -117,9 +117,7 @@ function initAddBookForm() {
         
         const title = document.getElementById('title').value;
         const author = document.getElementById('author').value;
-        const genre = document.getElementById('genre').value;
         const publicationYear = document.getElementById('publication-year').value;
-        const description = document.getElementById('description').value;
         
         // Réinitialiser le message
         messageDiv.className = '';
