@@ -1,5 +1,5 @@
 // Configuration de l'API
-const API_BASE_URL = 'http://localhost:3000/api'; // À ajuster selon votre configuration
+const API_BASE_URL = '/api'; // À ajuster selon votre configuration
 
 /**
  * Fonction utilitaire pour effectuer des requêtes API
