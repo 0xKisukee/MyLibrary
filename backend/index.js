@@ -1,5 +1,6 @@
 const express = require('express');
 require('dotenv').config();
+const cors = require('cors');
 // Import routes
 const userRoutes = require('./routes/user.route');
 const bookRoutes = require('./routes/book.route');
@@ -10,6 +11,14 @@ const { errorHandler } = require("./middlewares/errorHandler");
 
 const app = express();
 const PORT = process.env.PORT;
+
+// Authorize requests from frontend
+app.use(cors({
+    origin: 'http://localhost:8080', // Frontend
+    methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH', 'OPTIONS'],
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }));
 
 // Middleware for JSON requests
 app.use(express.json());
