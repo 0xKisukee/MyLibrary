@@ -3,8 +3,6 @@ services:
     build: ./frontend
     ports:
       - "8081:80"
-    environment:
-      PORT: ${PORT}
     depends_on:
       - backend
 
