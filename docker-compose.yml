@@ -1,27 +1,17 @@
-version: '3.8'
-
 services:
-
   frontend:
     build: ./frontend
-<<<<<<< HEAD
     ports:
       - "8081:80"
-=======
     environment:
       PORT: ${PORT}
-    ports:
-      - "8080:80"
->>>>>>> production
     depends_on:
       - backend
 
   backend:
     build: ./backend
-<<<<<<< HEAD
     env_file:
       - ./backend/.env
-=======
     environment:
       JWT_SECRET: ${JWT_SECRET}
       PORT: ${PORT}
@@ -33,7 +23,6 @@ services:
       ADMIN_USERNAME: ${ADMIN_USERNAME}
       ADMIN_EMAIL: ${ADMIN_EMAIL}
       ADMIN_PWD: ${ADMIN_PWD}
->>>>>>> production
 #    ports:
 #      - "3001:3000" USELESS BC WE DONT CALL THE API FROM THE HOST
     depends_on:
@@ -41,15 +30,12 @@ services:
 
   db:
     image: postgres:15
-<<<<<<< HEAD
+
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: adminpwd
       POSTGRES_DB: my_library_test
-=======
->>>>>>> production
     volumes:
       - pgdata:/var/lib/postgresql/data
-
 volumes:
   pgdata:
