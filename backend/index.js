@@ -40,7 +40,7 @@ app.use(errorHandler);
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`Server live on http://HOST:${PORT}.`);
+    console.log(`Server live on port ${PORT}.`);
 });
 
 // Create tables in database and admin user
